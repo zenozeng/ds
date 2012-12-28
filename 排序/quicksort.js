@@ -2,7 +2,7 @@ var quickSort = function(arr) {
     if (arr.length <= 1)
       return arr;
     if (arr.length == 2)
-      return arr[0] < arr[1] ? [arr[0], arr[1]] : [arr[1], arr[0]]
+      return arr[0] < arr[1] ? [arr[0], arr[1]] : [arr[1], arr[0]];
     var pivotIndex = Math.floor(arr.length / 2);
     var pivot = arr.splice(pivotIndex, 1)[0];
     var left = [];
