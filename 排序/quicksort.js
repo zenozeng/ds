@@ -4,10 +4,12 @@ var quickSort = function(arr) {
     if (arr.length == 2)
       return arr[0] < arr[1] ? [arr[0], arr[1]] : [arr[1], arr[0]];
     var pivotIndex = Math.floor(arr.length / 2);
-    var pivot = arr.splice(pivotIndex, 1)[0];
+    var pivot = arr[pivotIndex];
     var left = [];
     var right = [];
     for (var i = 0; i < arr.length; i++) {
+        if(i == pivot)
+          continue;
         if(arr[i] < pivot)
           left.push(arr[i]);
         else
