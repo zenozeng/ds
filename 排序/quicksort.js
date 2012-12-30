@@ -8,7 +8,7 @@ var quickSort = function(arr) {
     var left = [];
     var right = [];
     for (var i = 0; i < arr.length; i++) {
-        if(i == pivot)
+        if(i == pivotIndex)
           continue;
         if(arr[i] < pivot)
           left.push(arr[i]);
