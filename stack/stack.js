@@ -1,4 +1,5 @@
-// Time-stamp: <2015-02-03 20:03:45 Zeno Zeng>
+// 栈是一种只允许在一端操作数据的线性表
+// Time-stamp: <2015-02-03 20:43:33 Zeno Zeng>
 
 function Stack() {
     this.data = [];
