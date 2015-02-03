@@ -1,3 +1,5 @@
+// Time-stamp: <2015-02-03 20:03:45 Zeno Zeng>
+
 function Stack() {
     this.data = [];
     this.top = -1; // 栈指针
@@ -17,7 +19,7 @@ Stack.prototype.pop = function() {
 };
 
 Stack.prototype.peek = function() {
-    return this.data[this.top];
+    return this.data[this.top]; // 返回栈顶元素
 };
 
 Stack.prototype.clear = function() {
