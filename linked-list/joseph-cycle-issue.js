@@ -1,5 +1,5 @@
 // n 人围成圈，从一个人开始数，数到第 m 人将其杀死，然后循环，计算存活位置
-// Time-stamp: <2015-02-04 12:55:26 Zeno Zeng>
+// Time-stamp: <2015-02-04 12:56:57 Zeno Zeng>
 
 var n = 41;
 var m = 3;
@@ -9,7 +9,7 @@ function Node(data) {
     this.next = null;
 }
 
-// 创建单向循环列表
+// 创建单向循环链表
 
 var head = new Node(1);
 var nodes = [head];
