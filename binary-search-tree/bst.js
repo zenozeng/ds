@@ -48,7 +48,33 @@ BST.prototype.insert = function(data) {
         }
     } else {
         this.root = node;
+        return true;
     }
 };
+
+BST.prototype.max = function() {
+    if(!this.root) {
+        return null;
+    } else {
+        var currNode = this.root;
+        while(currNode.right) {
+            currNode = currNode.right;
+        }
+        return currNode;
+    }
+};
+
+BST.prototype.min = function() {
+    if(!this.root) {
+        return null;
+    } else {
+        var currNode = this.root;
+        while(currNode.left) {
+            currNode = currNode.left;
+        }
+        return currNode;
+    }
+};
+
 
 module.exports = BST;
