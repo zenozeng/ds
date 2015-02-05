@@ -76,5 +76,32 @@ BST.prototype.min = function() {
     }
 };
 
+BST.prototype.getNode = function(data) {
+    var currNode = this.root;
+    while(currNode) {
+        if(data > currNode) {
+            currNode = currNode.right;
+        } else if (data < currNode) {
+            currNode = currNode.left;
+        } else {
+            return currNode;
+        }
+    }
+    return null;
+};
+
+// convert BST to array (in order)
+BST.prototype.toArray = function() {
+    var arr = [];
+    var iter = function(node) {
+        if(node) {
+            iter(node.left);
+            arr.push(node.data);
+            iter(node.right);
+        }
+    };
+    iter(this.root);
+    return arr;
+};
 
 module.exports = BST;
