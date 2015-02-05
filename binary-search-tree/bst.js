@@ -2,7 +2,11 @@
 // http://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9
 // 参考了《数据结构与算法JavaScript描述》二叉树和二叉查找树一章
 
-// Time-stamp: <2015-02-05 16:32:12 Zeno Zeng>
+// 若有左子树，则左子树 **所有** 节点的值均小于等于根节点的值
+// 若有右子树，则右子树 **所有** 节点的值均大于等于根节点的值
+// 没有 duplicate nodes
+
+// Time-stamp: <2015-02-05 19:24:18 Zeno Zeng>
 
 function Node(data) {
     this.data = data;
@@ -21,8 +25,30 @@ function BST() {
 BST.prototype.insert = function(data) {
     var node = new Node(data);
     if(this.root) {
-        // todo
+        var currNode = this.root;
+        while(true) {
+            if(data > currNode.data) {
+                if(currNode.right) {
+                    currNode = currNode.right;
+                } else {
+                    currNode.right = node;
+                    return true; // insert successfully
+                }
+            } else if (data < currNode.data){
+                if(currNode.left) {
+                    currNode = currNode.left;
+                } else {
+                    currNode.left = node;
+                    return true; // insert successfully
+                }
+            } else {
+                // 节点已存在
+                return false;
+            }
+        }
     } else {
         this.root = node;
     }
 };
+
+module.exports = BST;
