@@ -104,4 +104,39 @@ BST.prototype.toArray = function() {
     return arr;
 };
 
+// todo
+BST.prototype.removeNode = function() {
+};
+
+BST.prototype.nodeCount = function() {
+    var count = 0;
+    var iter = function(node) {
+        if(node) {
+            count++;
+            iter(node.left);
+            iter(node.right);
+        }
+    };
+    iter(this.root);
+    return count;
+};
+
+BST.prototype.edgeCount = function() {
+    var count = 0;
+    var iter = function(node) {
+        if(node) {
+            if(node.left) {
+                count++;
+                iter(node.left);
+            }
+            if(node.right) {
+                count++;
+                iter(node.right);
+            }
+        }
+    };
+    iter(this.root);
+    return count;
+};
+
 module.exports = BST;
