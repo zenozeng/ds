@@ -52,11 +52,14 @@ BST.prototype.insert = function(data) {
     }
 };
 
-BST.prototype.max = function() {
-    if(!this.root) {
+BST.prototype.max = function(root) {
+    if(typeof root == "undefined") {
+        root = this.root;
+    }
+    if(!root) {
         return null;
     } else {
-        var currNode = this.root;
+        var currNode = root;
         while(currNode.right) {
             currNode = currNode.right;
         }
@@ -64,11 +67,14 @@ BST.prototype.max = function() {
     }
 };
 
-BST.prototype.min = function() {
-    if(!this.root) {
+BST.prototype.min = function(root) {
+    if(typeof root == "undefined") {
+        root = this.root;
+    }
+    if(!root) {
         return null;
     } else {
-        var currNode = this.root;
+        var currNode = root;
         while(currNode.left) {
             currNode = currNode.left;
         }
@@ -90,6 +96,22 @@ BST.prototype.getNode = function(data) {
     return null;
 };
 
+BST.prototype.getParentNode = function(data) {
+    var currNode = this.root;
+    var parentNode = null;
+    while(currNode) {
+        if(data > currNode) {
+            parentNode = currNode;
+            currNode = currNode.right;
+        } else if (data < currNode) {
+            parentNode = currNode;
+            currNode = currNode.left;
+        } else {
+            return parentNode;
+        }
+    }
+    return null;};
+
 // convert BST to array (in order)
 BST.prototype.toArray = function() {
     var arr = [];
@@ -104,8 +126,44 @@ BST.prototype.toArray = function() {
     return arr;
 };
 
-// todo
-BST.prototype.removeNode = function() {
+// remove 的关键在于要保证删除节点之后保留 BST 的特性
+BST.prototype.removeNode = function(node) {
+    if(!node) {
+        return false; // node not exists
+    }
+    if(node == this.root) {
+        this.root = null;
+        return true;
+    }
+    var parentNode = this.getParentNode(node.data);
+    if(!parentNode) {
+        return false;
+    }
+    var setNode = function(val) {
+        if(parentNode.left == node) {
+            parentNode.left = val;
+        } else {
+            parentNode.right = val;
+        }
+    };
+    if(!node.left && !node.right) {
+        setNode(null);
+        return true;
+    }
+    if(!node.left) {
+        setNode(node.right);
+        return true;
+    } else if(!node.right) {
+        setNode(node.left);
+        return true;
+    } else {
+        var tmpNode = this.min(node.right);
+        this.removeNode(tmpNode);
+        tmpNode.left = node.left;
+        tmpNode.right = node.right;
+        setNode(tmpNode);
+        return true;
+    }
 };
 
 BST.prototype.nodeCount = function() {
