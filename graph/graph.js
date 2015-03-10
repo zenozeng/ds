@@ -1,5 +1,5 @@
 // 此实现有参考《数据结构与算法 JavaScript 描述》中图和图算法一章
-// Time-stamp: <2015-03-10 09:26:40 Zeno Zeng>
+// Time-stamp: <2015-03-10 13:02:15 Zeno Zeng>
 
 function Graph(verticles) {
     this.verticles = verticles; // 顶点数组
@@ -45,12 +45,28 @@ Graph.prototype.dfs = function(startVerticle) {
                 console.log('Next: ' + _this.verticles[i]);
                 dfs(i);
             });
-        } else {
-            // console.log('Ignore: ' + _this.verticles[verticleIndex]);
         }
     };
 
     dfs(this.verticles.indexOf(startVerticle));
+};
+
+Graph.prototype.bfs = function(startVerticle) {
+    var _this = this,
+        visited = [];
+
+    var queue = [this.verticles.indexOf(startVerticle)];
+
+    while(queue.length > 0) {
+        var v = queue.shift();
+        if(!visited[v]) {
+            console.log('Visiting: ' + _this.verticles[v]);
+            visited[v] = true;
+            _this.adj[v].forEach(function(i) {
+                queue.push(i);
+            });
+        }
+    }
 };
 
 module.exports = Graph;
