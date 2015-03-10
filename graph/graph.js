@@ -1,5 +1,5 @@
 // 此实现有参考《数据结构与算法 JavaScript 描述》中图和图算法一章
-// Time-stamp: <2015-03-10 09:17:57 Zeno Zeng>
+// Time-stamp: <2015-03-10 09:26:40 Zeno Zeng>
 
 function Graph(verticles) {
     this.verticles = verticles; // 顶点数组
@@ -31,7 +31,6 @@ Graph.prototype.toString = function() {
 };
 
 // Depth First Search
-// TODO: 为什么测试结果和我想象的不太一样
 Graph.prototype.dfs = function(startVerticle) {
 
     var visited = [];
@@ -42,9 +41,10 @@ Graph.prototype.dfs = function(startVerticle) {
         if(!visited[verticleIndex]) {
             console.log('Visiting: ' + _this.verticles[verticleIndex]);
             visited[verticleIndex] = true;
-            for(var i = 0; i < _this.adj[verticleIndex].length; i++) {
-                dfs(_this.adj[verticleIndex][i]);
-            }
+            _this.adj[verticleIndex].forEach(function(i) {
+                console.log('Next: ' + _this.verticles[i]);
+                dfs(i);
+            });
         } else {
             // console.log('Ignore: ' + _this.verticles[verticleIndex]);
         }
